@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Técnico/a de Desenvolvimento de Software - ETPC Cantanhede. Dupla certificação e forte aproximação ao mercado de trabalho.">
+    <meta name="keywords" content="ETPC, Desenvolvimento de Software, Técnico, Ensino Profissional, Cantanhede">
+    <meta name="author" content="ETPC - Escola Técnico Profissional de Cantanhede">
+    <title>Técnico/a de Desenvolvimento de Software - ETPC</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #003d7a;
+            --primary-light: #005ba3;
+            --secondary: #00bcd4;
+            --accent: #ff9800;
+            --accent-light: #ffb74d;
+            --success: #4caf50;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --bg-light: #f5f7fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==================== NAVBAR ==================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            box-shadow: var(--shadow);
+            padding: 1rem 0;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--bg-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--secondary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            color: var(--bg-white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .navbar-menu a:hover::after {
+            width: 100%;
+        }
+
+        .btn-navbar {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .btn-navbar:hover {
+            background: var(--accent);
+            color: var(--bg-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--bg-white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ==================== MOBILE MENU ==================== */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 2rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: var(--transition);
+            }
+
+            .navbar-menu.active {
+                max-height: 400px;
+            }
+
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(10px, 10px);
+            }
+
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 152, 0, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--bg-white);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--accent);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+            margin: 0 0.5rem;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+        }
+
+        .cta-button.outline {
+            background: transparent;
+            color: var(--bg-white);
+            border-color: var(--bg-white);
+        }
+
+        .cta-button.outline:hover {
+            background: var(--bg-white);
+            color: var(--primary);
+            border-color: var(--bg-white);
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        .about {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-content {
+            background: var(--bg-white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            line-height: 1.8;
+        }
+
+        .about-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==================== SKILLS SECTION ==================== */
+        .skills {
+            padding: 5rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-8px);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--bg-white);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .skill-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ==================== ADVANTAGES SECTION ==================== */
+        .advantages {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .advantages::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 188, 212, 0.1);
+            border-radius: 50%;
+        }
+
+        .advantages .section-title,
+        .advantages .section-subtitle {
+            color: var(--bg-white);
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .advantage-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .advantage-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .advantage-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .advantage-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .advantage-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ==================== CAREER SECTION ==================== */
+        .career {
+            padding: 5rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .career-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .career-text h3 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .career-text p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .career-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: var(--bg-white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .career-image {
+            position: relative;
+        }
+
+        .career-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-white);
+            font-size: 4rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: var(--bg-white);
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--primary);
+            color: var(--bg-white);
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--bg-white);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* ==================== SCROLL TO TOP ==================== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--secondary);
+            color: var(--primary);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible {
+            display: flex;
+        }
+
+        .scroll-to-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                padding: 2rem;
+            }
+
+            .career-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .career-image-placeholder {
+                height: 300px;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .navbar-container {
+                padding: 0 1rem;
+            }
+
+            .navbar-logo {
+                font-size: 1.2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.95rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .career-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .navbar-menu {
+                gap: 1rem;
+            }
+
+            .scroll-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ==================== NAVBAR ==================== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <div class="navbar-logo-icon">E</div>
+                ETPC - Informática
+            </a>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="#sobre">O Curso</a></li>
+                <li><a href="#vantagens">Vantagens</a></li>
+                <li><a href="#carreira">Saídas Profissionais</a></li>
+                <li><button class="btn-navbar" onclick="scrollToSection('inscricao')">Inscreve-te Já</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>O Teu Sucesso Começa Aqui!</h1>
+            <h2 style="font-size: 2rem; color: rgba(255,255,255,0.95); font-weight: 400; margin-bottom: 2rem; display: none;">Torna-te Técnico/a de Desenvolvimento de Software</h2>
+            <p class="subtitle">Torna-te Técnico/a de Desenvolvimento de Software. Ganha uma dupla certificação (Ensino Secundário + Nível 4 do QNQ) com uma forte aproximação ao mercado de trabalho e componente prática.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="cta-button" onclick="scrollToSection('inscricao')">Queres Frequentar? Inscreve-te Já</button>
+                <a href="#sobre" class="cta-button outline">Saber Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre o Curso</h2>
+            <p class="section-subtitle">Uma formação profissional de qualidade, com componente teórica e prática</p>
+            <div class="about-content">
+                <h3>📚 Percurso do Ensino Secundário</h3>
+                <p>O curso de Técnico/a de Desenvolvimento de Software é um percurso integrado do Ensino Secundário (10.º, 11.º e 12.º anos) especialmente desenhado para alunos que desejam aprender a criar, arquitetar e garantir o funcionamento de aplicações informáticas.</p>
+                
+                <h3>💻 Focado em Criação e Arquitetura</h3>
+                <p>Durante estes três anos, vais aprender os fundamentos e as práticas mais modernas de desenvolvimento de software, desde a programação até à elaboração de documentação técnica completa. O currículo é estruturado de forma a simular o ambiente real de trabalho, preparando-te para as exigências do mercado profissional.</p>
+                
+                <h3>🎯 Abordagem Prática</h3>
+                <p>Com uma componente teórica sólida e uma forte ênfase na prática, terás oportunidade de trabalhar em projetos reais, colaborar em equipas e adquirir experiência hands-on que os empregadores procuram.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section class="skills">
+        <div class="container">
+            <h2 class="section-title">O Que Vais Aprender</h2>
+            <p class="section-subtitle">Competências principais para uma carreira de sucesso em desenvolvimento</p>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programação e Desenvolvimento</h3>
+                    <p>Aprende a programar e desenvolver software adaptado às necessidades reais das organizações, utilizando as linguagens e frameworks mais procurados no mercado.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">📄</div>
+                    <h3>Documentação Técnica</h3>
+                    <p>Domina a elaboração de documentação técnica completa: projeto, arquitetura e funcionamento das aplicações. Capacidade fundamental para o trabalho em equipa.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>Componente Prática</h3>
+                    <p>Simulação do ambiente real de trabalho com projetos concretos, ferramentas profissionais e metodologias ágeis. Aprendizagem aplicada desde o primeiro dia.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🏗️</div>
+                    <h3>Arquitetura de Software</h3>
+                    <p>Compreende os princípios de design, padrões de arquitetura e boas práticas que garantem código limpo, eficiente e escalável.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🤝</div>
+                    <h3>Trabalho em Equipa</h3>
+                    <p>Desenvolvimento de habilidades colaborativas essenciais, incluindo gestão de projetos, controlo de versão e comunicação técnica eficaz.</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <h3>Inovação Contínua</h3>
+                    <p>Mantém-te atualizado com as tecnologias emergentes, tendências do mercado e soluções inovadoras no panorama do desenvolvimento de software.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ADVANTAGES SECTION ==================== -->
+    <section class="advantages" id="vantagens">
+        <div class="container">
+            <h2 class="section-title">Vantagens do Ensino Profissional na ETPC</h2>
+            <p class="section-subtitle">Por que escolher este percurso de formação?</p>
+            
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">✓</span>
+                        Dupla Certificação
+                    </h3>
+                    <p>Obtém simultaneamente um Diploma de Ensino Secundário e um Certificado Profissional de Nível 4 do QNQ (Quadro Nacional de Qualificações).</p>
+                </div>
+
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">📚</span>
+                        Prosseguimento de Estudos
+                    </h3>
+                    <p>Acesso direto ao Ensino Superior através de concurso regional ou exames nacionais. Os teus estudos não terminam aqui; são apenas o início.</p>
+                </div>
+
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">🌍</span>
+                        Ambiente Inclusivo e Colaborativo
+                    </h3>
+                    <p>Escola com ambiente tecnológico moderno, participação em projetos como Erasmus+ e Eco-Escolas, promovendo inclusão e sustentabilidade.</p>
+                </div>
+
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">💼</span>
+                        Preparação para o Mercado
+                    </h3>
+                    <p>Forte aproximação ao mercado de trabalho com componente prática realista, estágios e conexões com empresas da área tecnológica.</p>
+                </div>
+
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">👨‍🏫</span>
+                        Docentes Especializados
+                    </h3>
+                    <p>Equipa de professores com experiência profissional real em desenvolvimento de software, trazendo conhecimento atualizado para a sala de aula.</p>
+                </div>
+
+                <div class="advantage-item">
+                    <h3>
+                        <span class="advantage-icon">🎓</span>
+                        Infraestruturas Modernas
+                    </h3>
+                    <p>Laboratórios equipados com computadores de última geração, software profissional e ambientes de trabalho que refletem o mercado real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CAREER SECTION ==================== -->
+    <section class="career" id="carreira">
+        <div class="container">
+            <div class="career-content">
+                <div class="career-text">
+                    <h3>Saídas Profissionais</h3>
+                    <p>O mercado tecnológico oferece algumas das melhores perspetivas de emprego em Portugal e na Europa. A procura por técnicos de desenvolvimento de software é constante e crescente.</p>
+                    <p>Após completares este curso, terás as competências para trabalhar em empresas de desenvolvimento, consultoria, start-ups tecnológicas, departamentos de IT em grandes organizações, e até iniciar o teu próprio projeto.</p>
+                    <p>As oportunidades profissionais incluem funções como Programador/a Junior, Desenvolvedor/a Web, Desenvolvedor/a Mobile, Analista de Sistemas, ou especialista em áreas específicas como Cloud Computing, Data Science e Cibersegurança.</p>
+
+                    <div class="career-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">+95%</span>
+                            <span class="stat-label">Taxa de Colocação</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">€2.5K+</span>
+                            <span class="stat-label">Salário Médio Inicial</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="career-image">
+                    <div class="career-image-placeholder">
+                        🚀
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section class="cta-section" id="inscricao">
+        <div class="container">
+            <h2>Pronto para Transformar o Teu Futuro?</h2>
+            <p>Junta-te a centenas de alunos que já estão a construir carreiras de sucesso em desenvolvimento de software</p>
+            <button class="cta-button" onclick="openInscription()">Inscreve-te Agora</button>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>ETPC - Informática</h4>
+                <p><strong>Localização:</strong></p>
+                <p>Cantanhede, Portugal</p>
+                <p><strong>Contacto:</strong></p>
+                <p>📞 +351 231 420 344</p>
+                <p>📧 <a href="mailto:info@etpc.pt">info@etpc.pt</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <p><a href="#sobre">Sobre o Curso</a></p>
+                <p><a href="#vantagens">Vantagens</a></p>
+                <p><a href="#carreira">Saídas Profissionais</a></p>
+                <p><a href="#inscricao">Inscrições</a></p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Segue-nos</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+                <p style="margin-top: 1.5rem;">
+                    <strong>Horário de Atendimento:</strong><br>
+                    Seg-Sex: 09h00 - 17h00<br>
+                    Sab-Dom: Fechado
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Mais Informações</h4>
+                <p><a href="#">Política de Privacidade</a></p>
+                <p><a href="#">Termos de Serviço</a></p>
+                <p><a href="#">Mapa do Site</a></p>
+                <p><a href="#">Contacte-nos</a></p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETPC - Escola Técnico Profissional de Cantanhede. Todos os direitos reservados. | Design & Development by ETPC</p>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL TO TOP ==================== -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</button>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // ==================== Mobile Menu Toggle ====================
+        const menuToggle = document.getElementById('menuToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
+        const navbar = document.querySelector('.navbar');
+
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navbarMenu.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar num link
+        navbarMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                navbarMenu.classList.remove('active');
+            });
+        });
+
+        // ==================== Navbar Scroll Effect ====================
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Mostrar/Esconder botão Scroll to Top
+            const scrollToTop = document.getElementById('scrollToTop');
+            if (window.scrollY > 400) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+
+        // ==================== Scroll to Section ====================
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // ==================== Scroll to Top ====================
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==================== Open Inscription (Modal/Alert) ====================
+        function openInscription() {
+            // Simulação de abertura de formulário de inscrição
+            const message = `
+Obrigado pelo teu interesse no curso de Técnico/a de Desenvolvimento de Software!
+
+Para te inscreveres, por favor:
+1. Visita o site da ETPC (www.etpc.pt)
+2. Acede à secção de Inscrições
+3. Preenche o formulário com os teus dados
+
+Ou contacta-nos diretamente:
+📞 +351 231 420 344
+📧 info@etpc.pt
+
+A ETPC aguarda a tua candidatura!
+            `;
+            alert(message);
+        }
+
+        // ==================== Smooth Scroll Behavior (Fallback) ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // ==================== Animations on Scroll ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar observer a cards
+        document.querySelectorAll('.skill-card, .advantage-item, .stat-box').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // ==================== Form Validation (if needed) ====================
+        console.log('Landing Page ETPC - Técnico de Desenvolvimento de Software carregada com sucesso!');
+    </script>
+</body>
+</html>
